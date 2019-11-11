@@ -1,0 +1,23 @@
+<body>
+<img src="{{ project.logo.url }}"/><br/>
+<span>{{ project.name }}</span>
+<div>
+    {{ project.description }}
+</div>
+
+{% for game_version in game_versions %}
+    <div>
+        <br/>
+        <span style="font-size: 1.3em">{{ game_version.name }}</span><br/><br/>
+        {% for release in game_version.project_releases %}
+            {% if release.channel == 0 %}
+            {% endif %}
+            <a href="{{ release.download_set.all.0.file.url }}">
+                <div>
+                    {{ release.get_channel_display }} {{ release.name }}
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endfor %}
+</body>
